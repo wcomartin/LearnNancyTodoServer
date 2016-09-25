@@ -4,14 +4,14 @@ using TodoApp.Todo.Models;
 
 namespace TodoApp.Todo.Features
 {
-    public class RemoveTodo : NancyModule 
+    public class UnCompleteTodo : NancyModule 
     {
-        public RemoveTodo() : base("/todos")
+        public UnCompleteTodo() : base("/todos")
         {
-            Delete("/{TodoId:Guid}", args => 
+            Put("/{TodoId:Guid}/uncomplete", args => 
             {
                 TodoDataModel todo = TodoQuery.GetTodo(args.TodoId);
-                TodoQuery.RemoveTodo(todo);
+                todo.Complete = false;
                 return HttpStatusCode.OK;
             });
         }

@@ -13,7 +13,7 @@ namespace TodoApp.Todo.Features
                 var post = this.Bind<CreateModel>();
                 var nextOrder = TodoQuery.GetNextOrder();
                 var todo = new TodoDataModel(post.Title, nextOrder);
-                TodoQuery.Todos.Add(todo);
+                TodoQuery.AddTodo(todo);
                 return HttpStatusCode.OK;
             });
         }
